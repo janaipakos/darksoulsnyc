@@ -1,11 +1,11 @@
 (function () {
 
   angular
-    .module('loc8rApp')
+    .module('darksoulsnycApp')
     .controller('reviewModalCtrl', reviewModalCtrl);
 
-  reviewModalCtrl.$inject = ['$modalInstance', 'loc8rData', 'locationData'];
-  function reviewModalCtrl ($modalInstance, loc8rData, locationData) {
+  reviewModalCtrl.$inject = ['$modalInstance', 'darksoulsnycData', 'locationData'];
+  function reviewModalCtrl ($modalInstance, darksoulsnycData, locationData) {
     var vm = this;
     vm.locationData = locationData;
 
@@ -20,7 +20,7 @@
     };
 
     vm.doAddReview = function (locationid, formData) {
-      loc8rData.addReviewById(locationid, {
+      darksoulsnycData.addReviewById(locationid, {
         author : formData.name,
         rating : formData.rating,
         reviewText : formData.reviewText

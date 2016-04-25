@@ -1,15 +1,15 @@
 (function () {
 
   angular
-    .module('loc8rApp')
+    .module('darksoulsnycApp')
     .controller('locationDetailCtrl', locationDetailCtrl);
 
-  locationDetailCtrl.$inject = ['$routeParams', '$modal', 'loc8rData'];
-  function locationDetailCtrl ($routeParams, $modal, loc8rData) {
+  locationDetailCtrl.$inject = ['$routeParams', '$modal', 'darksoulsnycData'];
+  function locationDetailCtrl ($routeParams, $modal, darksoulsnycData) {
     var vm = this;
     vm.locationid = $routeParams.locationid;
 
-    loc8rData.locationById(vm.locationid)
+    darksoulsnycData.locationById(vm.locationid)
       .success(function(data) {
         vm.data = { location: data };
         vm.pageHeader = {

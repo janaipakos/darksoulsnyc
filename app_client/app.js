@@ -1,6 +1,6 @@
 (function () {
 
-  angular.module('loc8rApp', ['ngRoute', 'ngSanitize', 'ui.bootstrap']);
+  angular.module('darksoulsnycApp', ['ngRoute', 'ngSanitize', 'ui.bootstrap']);
 
   function config ($routeProvider, $locationProvider) {
     $routeProvider
@@ -26,7 +26,7 @@
   }
 
   angular
-    .module('loc8rApp')
+    .module('darksoulsnycApp')
     .config(['$routeProvider', '$locationProvider', config]);
 
 })();

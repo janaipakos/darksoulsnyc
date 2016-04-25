@@ -1,13 +1,13 @@
 (function() {
 
   angular
-    .module('loc8rApp')
-    .service('loc8rData', loc8rData);
+    .module('darksoulsnycApp')
+    .service('darksoulsnycData', darksoulsnycData);
 
-  loc8rData.$inject = ['$http'];
-  function loc8rData ($http) {
+  darksoulsnycData.$inject = ['$http'];
+  function darksoulsnycData ($http) {
     var locationByCoords = function (lat, lng) {
-      return $http.get('/api/locations?lng=' + lng + '&lat=' + lat + '&maxDistance=20');
+      return $http.get('/api/locations?lng=' + lng + '&lat=' + lat + '&maxDistance=2000000');
     };
 
     var locationById = function (locationid) {

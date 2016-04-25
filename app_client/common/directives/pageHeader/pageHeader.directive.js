@@ -1,7 +1,7 @@
 (function () {
 
   angular
-    .module('loc8rApp')
+    .module('darksoulsnycApp')
     .directive('pageHeader', pageHeader);
 
   function pageHeader () {

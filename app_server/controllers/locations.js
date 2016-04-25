@@ -47,12 +47,12 @@ var _showError = function (req, res, status) {
 
 var renderHomepage = function(req, res, responseBody){
   res.render('locations-list', {
-    title: 'Loc8r - find a place to work with wifi',
+    title: 'darksoulsnyc - find a place to work with wifi',
     pageHeader: {
-      title: 'Loc8r',
+      title: 'darksoulsnyc',
       strapline: 'Find places to work with wifi near you!'
     },
-    sidebar: "Looking for wifi and a seat? Loc8r helps you find places to work when out and about. Perhaps with coffee, cake or a pint? Let Loc8r help you find the place you're looking for."
+    sidebar: "Looking for wifi and a seat? darksoulsnyc helps you find places to work when out and about. Perhaps with coffee, cake or a pint? Let darksoulsnyc help you find the place you're looking for."
    });
 };
 
@@ -91,7 +91,7 @@ var renderDetailPage = function (req, res, locDetail) {
     title: locDetail.name,
     pageHeader: {title: locDetail.name},
     sidebar: {
-      context: 'is on Loc8r because it has accessible wifi and space to sit down with your laptop and get some work done.',
+      context: 'is on darksoulsnyc because it has accessible wifi and space to sit down with your laptop and get some work done.',
       callToAction: 'If you\'ve been and you like it - or if you don\'t - please leave a review to help other people just like you.'
     },
     location: locDetail
@@ -107,7 +107,7 @@ module.exports.locationInfo = function(req, res){
 
 var renderReviewForm = function (req, res, locDetail) {
   res.render('location-review-form', {
-    title: 'Review ' + locDetail.name + ' on Loc8r',
+    title: 'Review ' + locDetail.name + ' on darksoulsnyc',
     pageHeader: { title: 'Review ' + locDetail.name },
     error: req.query.err,
     url: req.originalUrl

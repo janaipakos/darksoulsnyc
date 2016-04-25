@@ -1,11 +1,11 @@
 (function () {
 
   angular
-    .module('loc8rApp')
+    .module('darksoulsnycApp')
     .controller('homeCtrl', homeCtrl);
 
-  homeCtrl.$inject = ['$scope', 'loc8rData', 'geolocation'];
-  function homeCtrl ($scope, loc8rData, geolocation) {
+  homeCtrl.$inject = ['$scope', 'darksoulsnycData', 'geolocation'];
+  function homeCtrl ($scope, darksoulsnycData, geolocation) {
     // Nasty IE9 redirect hack (not recommended)
     if (window.location.pathname !== '/') {
       window.location.href = '/#' + window.location.pathname;
@@ -25,7 +25,7 @@
       var lat = position.coords.latitude,
           lng = position.coords.longitude;
       vm.message = "Searching for nearby places";
-      loc8rData.locationByCoords(lat, lng)
+      darksoulsnycData.locationByCoords(lat, lng)
         .success(function(data) {
           vm.message = data.length > 0 ? "" : "No locations found nearby";
           vm.data = { locations: data };

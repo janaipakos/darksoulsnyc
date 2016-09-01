@@ -64,16 +64,6 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-// force SSL
-app.use('/*', function(req, res){
-  if(req.headers['x-forwarded-proto']!=='https'){
-    res.redirect(301, 'https://darksoulsnyc.herokuapp.com'+req.url);
-  }
-  res.sendFile(__dirname + '/index.html');
-});
-
-
-
 // error handlers
 
 // development error handler

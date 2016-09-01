@@ -84,9 +84,6 @@ if ('development' == app.get('env')) {
 } else if ('production' == app.get('env')) {
   console.log('Started in PROD mode');
   app.use(forceSsl);
-  app.use('/public', express.static(__dirname + '/public'));
-  app.use(express.errorHandler());
-  mongoose.connect(process.env.MONGOHQ_URL);
 }
 
 // error handlers

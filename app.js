@@ -66,13 +66,17 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-app.configure 'production', ->
-  app.use forceSsl(req, res, next) ->
-    if req.header 'x-forwarded-proto' != 'https'
-      res.redirect "https://#{req.header 'host'}#{req.url}"
-    else
-      next()
-      
+// force SSL
+app.use(function (req, res, next) {
+  var sslUrl;
+  if (process.env.NODE_ENV === 'production' &&
+    req.headers['x-forwarded-proto'] !== 'https') {
+    sslUrl = ['https://darksoulsnyc.herokuapp.com/', req.url].join('');
+    return res.redirect(sslUrl);
+  }
+  return next();
+});
+
 // error handlers
 
 // development error handler

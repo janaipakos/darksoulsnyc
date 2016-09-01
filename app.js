@@ -66,6 +66,13 @@ app.use(function(req, res, next) {
     next(err);
 });
 
+app.configure 'production', ->
+  app.use forceSsl(req, res, next) ->
+    if req.header 'x-forwarded-proto' != 'https'
+      res.redirect "https://#{req.header 'host'}#{req.url}"
+    else
+      next()
+      
 // error handlers
 
 // development error handler
@@ -89,6 +96,7 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+
 
 
 module.exports = app;

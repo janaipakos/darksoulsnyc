@@ -67,15 +67,27 @@ app.use(function(req, res, next) {
 });
 
 // force SSL
-app.use (function (req, res, next) {
-    if (req.protocol === 'https') {
-        console.log(req.protocol, req.secure);
-        next();
+var forceSsl = function (req, res, next) {
+    if ( req.headers['x-forwarded-proto'] != 'https'){
+      console.log( 'forceSSL req.get = ' + req.get('Host') + ' req.url = ' + req.url );
+      return res.redirect('https://' + req.get('Host') + req.url );
     } else {
-        console.log('redirected');
-        res.redirect('https://' + req.headers.host + req.url);
+      console.log( 'No need to re-direct to HTTPS' );
+      next();
     }
-});
+};
+
+if ('development' == app.get('env')) {
+  console.log('Started in dev mode');
+  // Other code here
+
+} else if ('production' == app.get('env')) {
+  console.log('Started in PROD mode');
+  app.use(forceSsl);
+  app.use('/public', express.static(__dirname + '/public'));
+  app.use(express.errorHandler());
+  mongoose.connect(process.env.MONGOHQ_URL);
+}
 
 // error handlers
 

@@ -43,8 +43,6 @@ fs.writeFile('public/angular/darksoulsnyc.min.js', uglified.code, function (err)
   }
 });
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -67,24 +65,14 @@ app.use(function(req, res, next) {
 });
 
 // force SSL
-var forceSsl = function (req, res, next) {
-    if ( req.headers['x-forwarded-proto'] != 'https'){
-      console.log( 'forceSSL req.get = ' + req.get('Host') + ' req.url = ' + req.url );
-      return res.redirect('https://' + req.get('Host') + req.url );
-    } else {
-      console.log( 'No need to re-direct to HTTPS' );
-      next();
-    }
-};
+app.use('/*', function(req, res){
+  if(req.headers['x-forwarded-proto']!=='https'){
+    res.redirect(301, 'https://darksoulsnyc.herokuapp.com'+req.url);
+  }
+  res.sendFile(__dirname + '/index.html');
+});
 
-if ('development' == app.get('env')) {
-  console.log('Started in dev mode');
-  // Other code here
 
-} else if ('production' == app.get('env')) {
-  console.log('Started in PROD mode');
-  app.use(forceSsl);
-}
 
 // error handlers
 
